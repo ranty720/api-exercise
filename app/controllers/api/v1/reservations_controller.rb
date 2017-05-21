@@ -2,17 +2,17 @@ class Api::V1::ReservationsController < ApiController
   before_action :authenticate_user!, :only => [:index]
   def index
     @reservations = current_user.reservations
-    render :json => {
-      :data => @reservations.map { |reservation|
-        {
-        :booking_code => reservation.booking_code,
-        :train_number => reservation.train.number,
-        :seat_number => reservation.seat_number,
-        :customer_name => reservation.customer_name,
-        :customer_phone => reservation.customer_phone
-        }
-      }
-    }
+    #render :json => {
+    #  :data => @reservations.map { |reservation|
+    #    {
+    #    :booking_code => reservation.booking_code,
+    #    :train_number => reservation.train.number,
+    #    :seat_number => reservation.seat_number,
+    #    :customer_name => reservation.customer_name,
+    #    :customer_phone => reservation.customer_phone
+    #    }
+    #  }
+    #}
   end
   def create
     @train = Train.find_by_number!( params[:train_number] )
@@ -30,13 +30,13 @@ class Api::V1::ReservationsController < ApiController
   end
   def show
     @reservation = Reservation.find_by_booking_code!( params[:booking_code] )
-    render :json => {
-      :booking_code => @reservation.booking_code,
-      :train_number => @reservation.train.number,
-      :seat_number => @reservation.seat_number,
-      :customer_name => @reservation.customer_name,
-      :customer_phone => @reservation.customer_phone
-    }
+    #render :json => {
+    #  :booking_code => @reservation.booking_code,
+    #  :train_number => @reservation.train.number,
+    #  :seat_number => @reservation.seat_number,
+    #  :customer_name => @reservation.customer_name,
+    #  :customer_phone => @reservation.customer_phone
+    #}
   end
   def update
     @reservation = Reservation.find_by_booking_code!( params[:booking_code])
