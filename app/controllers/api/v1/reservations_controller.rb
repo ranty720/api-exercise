@@ -12,7 +12,7 @@ class Api::V1::ReservationsController < ApiController
     #    :customer_phone => reservation.customer_phone
     #    }
     #  }
-    #}
+    }
   end
   def create
     @train = Train.find_by_number!( params[:train_number] )
